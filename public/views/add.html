@@ -1,0 +1,20 @@
+<div class="container-fluid animated fadeIn" style = "overflow: hidden; margin-top: 15px;">
+    <div class="panel panel-default program-level-header">
+        <div class="panel-body">
+            <h5 class = "pull-left" style = "padding-top: 5px">Add Outages / Members / Tasks</h5>
+            <a ui-sref="landing.dashboard" class = "pull-right btn btn-warning btn-sm view-text">Back To DashBoard View</a>
+        </div>
+    </div>
+    <section class="add">        
+        <br>
+        <ul class="nav nav-pills nav-justified">
+            <li role="presentation" class="active"><a ui-sref=".addMember">Add Member</a></li>
+            <li role="presentation" class="active"><a ui-sref=".addOutage">Add Outage</a></li>
+            <li role="presentation" class="active"><a ui-sref=".addTask">Add Tasks</a></li>
+            <li role="presentation" class="active"><a ui-sref=".updateRemedy">Update Remedy Status</a></li>
+        </ul>
+        <br>
+        <div ui-view></div>        
+    </section>
+</div>
+

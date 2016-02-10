@@ -1,0 +1,62 @@
+<section class="dashboard animated fadeIn">
+    <h4 class = "text-center"><span class="ion-ios-pulse"></span> Dashboard Overview</h4>
+    <br>
+    
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <h3 class = "text-center">Support Ticket Status</h3>
+                <hr style="margin-bottom: 0px;">
+                <table class="table table-responsive table-striped">
+                    <tbody>
+                        <tr>
+                            <td>Total Pending Tickets</td>
+                            <td><span class="badge">{{ticketTrend.totalPending}}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Total High Ticket(s)</td>
+                            <td><span class="badge">{{ticketTrend.totalHigh}}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Total Medium Ticket(s)</td>
+                            <td><span class="badge">{{ticketTrend.totalMedium}}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Total Low Ticket(s)</td>
+                            <td><span class="badge">{{ticketTrend.totalLow}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>                
+            </div> 
+        </div>
+        <div class="col-md-7">
+            <div class="panel  panel-default">
+                <h3 class="text-center">Application Outage Notification</h3>    
+                <hr style="margin-bottom: 0px;">
+                <table class="table table-responsive table-striped">
+                   <tr ng-repeat = "data in outageList">
+                        <td title = "Issue">{{data.issue}}</td>
+                        <td title = "Description">{{data.description}}</td>
+                        <td title = "EndSystem">{{data.endSystem}}</td>
+                        <td title = "ReportedDate">{{data.reportedDate | date: MM/dd/yyyy}}</td>
+                        <td title = "Criticality">
+                            <span class="label label-danger" ng-if = "data.criticality == 'critical'">Critical</span>
+                            <span class="label label-danger" ng-if = "data.criticality == 'high'">High</span>
+                            <span class="label label-warning" ng-if = "data.criticality == 'medium'">Medium</span>
+                        </td>
+                    </tr>
+                </table>
+                <a ui-sref="landing.notification" class="btn btn-primary btn-block load-more">Load More</a>
+            </div> 
+        </div>
+    </div>
+    
+    <div class="row">       
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4 class="text-center">Remedy Trend</h4>
+                <highchart id = "chart1" config = "chartConfig"></highchart>
+            </div>
+        </div>
+    </div>                    
+</section>  

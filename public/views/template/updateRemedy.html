@@ -1,0 +1,38 @@
+<div class="container col-md-9 animated fadeInLeft">
+    <div class="alert alert-{{type}} animated fadeIn" ng-show = "alert">
+        <p>{{message}}</p>
+    </div>
+    <h4 class="text-center">Update Remedy Status.</h4>
+    <hr>
+    <form name = "updateRemedyForm" class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="pending">Total Pending Tickets</label>
+            <div class="col-sm-6">
+                <input type = "number" class="form-control" placeholder="Pending Tickets" name = "totalPending" ng-model = "totalPending" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="high">Total High Tickets</label>
+            <div class="col-sm-6">
+                <input type = "number" class="form-control" placeholder="High Tickets" name = "totalHigh" ng-model = "totalHigh" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="medium">Total Medium Tickets</label>
+            <div class="col-sm-6">
+                <input type = "number" class="form-control" placeholder="Medium Tickets" name = "totalMedium" ng-model = "totalMedium" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="low">Total Low Tickets</label>
+            <div class="col-sm-6">
+                <input type = "number" class="form-control" placeholder="Low Tickets" name = "totalLow" ng-model  = "totalLow" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-6">
+                <input type="submit" class="btn btn-success" value="Update Remedy Status" ng-disabled = "updateRemedyForm.totalPending.$invalid || updateRemedyForm.totalHigh.$invalid || updateRemedyForm.totalMedium.$invalid || updateRemedyForm.totalLow.$invalid" ng-click = "updateTicketStatus()">
+            </div>
+        </div>
+    </form>
+</div>

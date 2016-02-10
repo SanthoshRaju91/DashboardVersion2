@@ -1,0 +1,25 @@
+<div class="container-fluid animated fadeIn" style = "overflow: hidden; margin-top: 15px;">
+    <div class="panel panel-default program-level-header">
+        <div class="panel-body">
+            <h5 class = "pull-left" style = "padding-top: 5px">Team members View</h5>
+            <a ui-sref="landing.dashboard" class = "pull-right btn btn-warning btn-sm view-text">Back To DashBoard View</a>
+        </div>
+    </div>
+    <section class="team-members">
+        <div class="container" style="width: 960px; margin-left: 0px;">                    
+            <div class="row">
+                <div class="col-md-3" ng-repeat = "member in teamMembers track by $index" style = "height: 150px;">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p class="clear-text">{{member.name}}</p>
+                            <p>{{member.emailAddress}}</p>
+                            <div class="label label-danger" ng-if = "member.role == 'Developer'">{{member.role}}</div>
+                            <div class="label label-warning" ng-if = "member.role == 'Maintenance'">{{member.role}}</div>
+                            <div class="label label-success" ng-if = "member.role == 'Support'">{{member.role}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>               
+    </section>
+</div>

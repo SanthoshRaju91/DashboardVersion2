@@ -1,0 +1,23 @@
+<div class="container-fluid animated fadeIn" style = "overflow: hidden; margin-top: 15px;">
+    <div class="panel panel-default program-level-header">
+        <div class="panel-body">
+            <h5 class = "pull-left" style = "padding-top: 5px">Reports Generation</h5>
+            <a ui-sref = "landing.dashboard" class = "pull-right btn btn-warning btn-sm view-text">Back To DashBoard View</a>
+        </div>
+    </div>
+    <section class="reports">
+        <div class="panel panel-default">
+            <div class="panel-body" style="padding: 0px; padding-bottom: 10px;">
+                <h3 class="text-center" style="margin-top: 10px;"><b>Please select the type of report to generate</b></h3>
+                <hr style="margin: 10px;">
+                <div class="text-center">
+                    <a class="btn btn-success" ui-sref=".ACH" role="button">ACH Report</a>
+                    <a class="btn btn-success" ui-sref=".commerce" role="button">Commerce Report</a>
+                    <a class="btn btn-success" ui-sref=".serviceRequest" role="button">Service Request Report</a>
+                    <a class="btn btn-success" ui-sref=".onlineOrder" role="button">Online Orders Report</a>	        
+                </div>            
+            </div>        
+        </div>
+        <div ui-view></div>    
+    </section>    
+</div>

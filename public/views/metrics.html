@@ -1,0 +1,48 @@
+<div class="container-fluid animated fadeIn" style = "overflow: hidden; margin-top: 15px;">
+    <div class="panel panel-default program-level-header">
+        <div class="panel-body">
+            <h5 class = "pull-left" style = "padding-top: 5px">Metrics Overview</h5>
+            <a ui-sref = "landing.dashboard" class = "pull-right btn btn-warning btn-sm view-text">Back To DashBoard View</a>
+        </div>
+    </div>    
+    <section class="metrics">
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h5 class="text-center">WM Orders - stats (LAST 10 Days only)</h5>
+                        <highchart id = "chart1" config = "orderConfig"></highchart>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h5 class="text-center">Report Problem - Stats</h5>
+                        <highchart id = "chart1" config = "reportConfig"></highchart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h5 class="text-center">Trans-notify - stats</h5>
+                        <highchart id = "chart1" config = "transNotifyConfig"></highchart>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h5 class="text-center">Scheduled Payments - stats</h5>
+                        <highchart id = "chart1" config = "schedulePaymentConfig"></highchart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>        
+</div>

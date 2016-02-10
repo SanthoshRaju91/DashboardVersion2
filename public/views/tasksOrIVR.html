@@ -1,0 +1,70 @@
+<div class="container-fluid animated fadeIn" style = "overflow: hidden; margin-top: 15px;">
+    <div class="panel panel-default program-level-header">
+        <div class="panel-body">
+            <h5 class = "pull-left" style = "padding-top: 5px">Tasks/IVR details View</h5>
+            <a ui-sref = "landing.dashboard" class = "pull-right btn btn-warning btn-sm view-text">Back To DashBoard View</a>
+        </div>
+    </div>
+    <section class="taskIVRSection">
+        <div class="row">
+            <div class="row container-fluid">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h5 class="text-center">TASK Details</h5>
+                        <hr>
+                        <table ng-table = "taskListParams" class = "table table-responsive table-striped table-condensed">
+                            <tr ng-repeat = "task in $data track by $index">
+                                <td title="'Task Name'">{{task.taskName}}</td>
+                                <td title="'Task Description'">{{task.taskDescription}}</td>
+                                <td title="'Assigned To'">
+                                    <span class="label label-danger" ng-if = "task.assignedTo == 'Development'" style="font-size: 14px;">{{task.assignedTo}}</span>
+                                    <span class="label label-warning" ng-if = "task.assignedTo == 'Maintenance'" style="font-size: 14px;">{{task.assignedTo}}</span>
+                                    <span class="label label-success" ng-if = "task.assignedTo == 'Support'" style="font-size: 14px;">{{task.assignedTo}}</span>
+                                </td>
+                                <td title="'Status'">{{task.status}}</td>
+                                <td title="'Action'">
+                                    <input type = "submit" class="btn btn-primary btn-sm" style = "margin-right: 10px;" Value = "update">
+                                    <input type = "submit" class="btn btn-danger btn-sm" Value = "delete" ng-click = "delete(task._id)">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row container-fluid">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h5 class="text-center">Invoice Files without Status</h5>     
+                        <hr>
+                        <table ng-table = "ivrWithoutFileStatusParams" class = "table">                        
+                            <tr ng-repeat = "result in $data track by $index">
+                                <td title = "'IVR FILE NAME'">{{result.ivrFileName}}</td>
+                                <td title = "'IVR FILE ID'">{{result.ivrFileId}}</td>
+                                <td title = "'BP STATUS'">{{result.ivrBPStatus}}</td>                                
+                                <td title = "'FILE STATUS'">{{result.ivrFileStatus}}</td>                                
+                                <td title = "'AUDIT CREATE DATE'">{{result.ivrAuditCreateDate | date: 'MM/dd/yyyy hh:mm:ss'}}</td>
+                            </tr>                       
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row container-fluid">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h5 class="text-center">Invoice Files without Name</h5>
+                        <hr>
+                        <table ng-table = "ivrWithoutFileNameParams" class = "table">                        
+                            <tr ng-repeat = "result in $data track by $index">
+                                <td title = "'IVR FILE NAME'">{{result.ivrFileName}}</td>
+                                <td title = "'IVR FILE ID'">{{result.ivrFileId}}</td>
+                                <td title = "'BP STATUS'">{{result.ivrBPStatus}}</td>                                
+                                <td title = "'FILE STATUS'">{{result.ivrFileStatus}}</td>                                
+                                <td title = "'AUDIT CREATE DATE'">{{result.ivrAuditCreateDate | date: 'MM/dd/yyyy hh:mm:ss'}}</td>
+                            </tr>                       
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

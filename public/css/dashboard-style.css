@@ -1,0 +1,555 @@
+html {
+  overflow: hidden;
+  height: 100%;
+}
+body {
+  overflow: auto;
+  height: 100%;
+    font-family: 'Lato', sans-serif;
+}
+
+.modal-open {
+ overflow: auto; 
+}
+
+
+.main-content {
+ padding-left: 60px;    
+}
+
+.navbar {
+    width: 100%;
+    height: 60px
+}
+
+
+.navbar-brand {
+    text-transform: uppercase;
+    font-size: 25px;
+    color: #fff;
+}
+.navbar-brand span {
+    margin-right: 5px;
+    font-size: 25px;
+}
+
+
+.ion-ios-email-outline {
+    font-size: 25px;
+}
+
+.navbar-inverse {
+    margin-bottom: 0px;
+    background: #2b597b;
+    border-color: #2b597b;    
+}
+
+
+.navbar-inverse .navbar-brand,.navbar-inverse .navbar-nav>li>a{color:#F2F1EF}
+.navbar-inverse .badge {background:#ccc; border-color: #2b597b;border:1px solid;font-size: :11px}
+
+.main-container {
+    margin-top: 65px;
+}
+
+.panel-table {
+    margin-left: 50px;
+}
+
+.icon {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.dashboard-header {
+    height: 50%;
+    margin-bottom: 20px;
+}
+
+.info-content {
+    margin: 50px 0px;
+}
+
+
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    margin-top: 62px;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #2b597b ;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 5px !important;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -200px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 18em;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #fff;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+
+.ion-arrow-swap {
+    background: #22313F;
+    padding: 5px 15px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+#menu-toggle:hover {
+    color: #fff;
+}
+
+.navbar-brand:focus {
+    color: #fff !important;
+}
+
+#page-content-wrapper {
+    height: auto;
+}
+.col-md-10{
+    width:100%; 
+    background:#F6F6F6;
+    height:100%;
+}
+h3{ color:#22313F;}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus{background-color: #fff;}
+
+.row {
+    margin-top:12px;
+}
+.col-md-3 { 
+    height :250px;
+    background-color: white;
+ 
+}
+ h4 {
+     font-size: 21px;
+   font-weight: bold;
+ }
+h1 {
+    font-size: 48px;
+    margin-left:25px;
+}
+div#arrowgreen {
+    font-size: 32px;
+    float: right;
+    margin-top: -51px;
+    margin-right: 39px;
+    color: green;
+}
+div#arrowred {
+     font-size: 32px;
+    float: right;
+    margin-top: -51px;
+    margin-right: 39px;
+    color: red;
+}
+
+.btn-logout:link,
+.btn-logout:visited {
+    margin: 12px !important;
+    padding: 5px 10px !important;
+    color: #000 !important;
+}
+
+.btn-logout:hover,
+.btn-logout:active {
+    background: #F2F1EF !important;
+    border-color: #F2F1EF !important;
+    color: #000 !important;
+}
+
+.profile-container {
+    margin: 10px;
+    width: 210px;
+}
+
+.thumbnail-custom {
+    background: #2b597b;
+    border-color: #2b597b;
+}
+.thumbnail-custom img {
+    border: 2px solid #F2F1EF;
+    padding: 10px;
+}
+.thumbnail-custom h3 {
+    color: #F2F1EF;
+    font-size: 20px;
+    margin-left: 30px;
+}
+
+.caption button {
+    margin: 0px auto;
+    margin-left: 45px;
+}
+.icon {
+    font-size: 18px;
+}
+
+.view-container {
+    /*margin-left: 260px !important;*/
+    width: 80%;
+}
+
+.program-head {
+    text-transform: uppercase;
+    word-spacing: 1px;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.well h4 {
+    text-transform: uppercase;
+    word-spacing: 1px;
+    letter-spacing: 1px;    
+}
+
+.panel-body h5 {
+    text-transform: uppercase;
+    word-spacing: 1px;
+    letter-spacing: 1px;
+}
+
+.panel-heading h5 {
+    text-transform: uppercase;
+    word-spacing: 1px;
+    letter-spacing: 1px;
+}
+
+.panel-health {
+    width: 682px;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+
+.well h4 {
+    margin: 0px;
+}
+
+.panel-health h3 {
+    margin-top: 10px;
+}
+
+.notification-container {
+    /*width: 25%;*/
+}
+
+.pie-container {
+    height: 260px;
+}
+
+.piechart {
+    height: 200px !important;
+    overflow: hidden !important;
+}
+
+.view-text {
+    text-transform: uppercase;
+    word-spacing: 1px;
+    letter-spacing: 1px;
+    
+}
+
+.rolling-text {
+    text-transform: uppercase;
+    word-spacing: 1px;
+    letter-spacing: 1px;
+    background: rgba(26, 25, 25, 0.81);
+    color: #fff;
+    padding: 5px;
+    border-color: #101010;
+    border-radius: 5px;
+}
+
+
+.program-level-header {
+    border-left: 3px solid #D91E18;
+}
+
+.program-level-header h5 {
+    margin: 0px;
+}
+
+.colorBlock {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+}
+
+.colorBlock:hover {
+    transform: scale(1.1);
+}
+
+.modal-body h4 {
+    text-transform: uppercase;
+    word-spacing: 1px;
+    letter-spacing: 1px;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.profile-view .control-label {
+    text-transform: uppercase;
+    word-spacing: 1px;
+    letter-spacing: 1px;
+    border-left: 2px solid #F64747;
+    font-weight: lighter;
+    font-size: 12px;
+}
+
+.d3-chart-style svg {
+    height: 75%;
+}
+
+/*** FOR LIST-GROUP ITEM H5 ELEMENT ***/
+.list-group-item h5 {
+    margin: 0px;
+    text-transform: uppercase;
+    word-spacing: 1px;
+    letter-spacing: 1px;
+    padding: 5px;
+}
+
+/*** FOR MAIN DASHBOARD HEADER ELEMENT***/
+.dashboard-header {
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    font-size: 18px;
+    height: 18px;
+}
+
+/*** FOR PROGRAM, LOB, PEOPLE VIEW BUTTONS ***/
+.views-button-custom {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+}
+
+/*** FOR PROGRAM HEALTH CONTAINER***/
+.program-health-container {
+    padding: 0px;
+    padding-left: 35px;
+}
+
+.program-health {
+    padding: 0px;
+    margin-bottom: 10px;
+}
+
+
+/*** FOR PROJECT SUMMARY HEALTH CONTAINER ***/
+
+/*
+
+#chart1 svg {
+  height: 500px;
+  margin: 10px;
+  min-width: 100px;
+  min-height: 100px;
+  margin-top: 100px;
+}
+ #chart2, #chart3 {
+    height: 500px;
+    margin-top: 200px;
+}
+    
+#chart4 {
+    height: 500px;
+    margin-top: 300px;
+}
+ 
+
+#barChart {
+      height: 500px;
+  margin: 10px;
+  min-width: 100px;
+  min-height: 100px;
+}*/
+
+
+.containerClass {
+    margin-top: 20px;
+}
+
+.profile-thumbail {
+    background: none;
+    border-color: none;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+.overlay {
+  width: 600px;
+  margin-left: 400px;
+  margin-right: auto;
+  padding-top: 0px;
+}
+
+    
+    .profile hr {
+        margin: 5px;
+    }
+    
+    .load-more {
+        border-radius: 0px;
+        text-transform: uppercase;
+        word-spacing: 1px;
+        letter-spacing: 1px;
+        font-weight: 400;
+        padding: 8.5px;
+    }    
+    
+    .table thead th {
+        text-transform: uppercase;
+        word-spacing: 1px;
+        letter-spacing: 1px;
+        font-weight: 500;
+        font-size: 14px;
+    }
+    .table tbody td {
+        font-size: 13px;
+    }
+    
+    .login-container {
+        background-image: linear-gradient(rgba(2, 2, 2, 0.7), rgba(2, 2, 2, 0.7)), url(../images/background.jpg);
+        background-position: center;
+        background-size: cover;
+        height: 100vh;
+    }
+    
+    .login-panel {
+        margin-top: 150px;
+        padding: 20px;
+        background-image: linear-gradient(rgba(144, 143, 143, 0.63), rgba(144, 143, 143, 0.63));
+    }
