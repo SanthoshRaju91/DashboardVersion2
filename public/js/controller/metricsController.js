@@ -202,6 +202,13 @@ app.controller('metricsController', ['$scope', '$http', '$filter', '$interval', 
                     loadTransNotifyStats('column', 'Trans-notify count', '# of transactions', days, counts);
                 }
             }); 
+    
+        $http.get(REST_URL + '/CSErrorCodes')
+            .success(function(response) {
+                if(response.success) {
+                    $scope.errorCodes = response.result;                     
+                }
+            });
               
 }]);
 

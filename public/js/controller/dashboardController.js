@@ -3,7 +3,7 @@ var app = angular.module('dashBoard', ["highcharts-ng", "ngTable"]);
 app.constant('REST_URL', document.location.origin + '/api');
 
 
-app.controller('dashboardController', ['$scope', '$http', 'REST_URL', 'ngTableParams', function($scope, $http, REST_URL, ngTableParams) {       
+app.controller('dashboardController', ['$scope', '$http', '$window', 'REST_URL', 'ngTableParams', function($scope, $http, $window, REST_URL, ngTableParams) {       
     
     function loadRemedyTrendChart(month, pending, opened, resolved) {
          $scope.chartConfig = {
@@ -82,7 +82,42 @@ app.controller('dashboardController', ['$scope', '$http', 'REST_URL', 'ngTablePa
             $scope.ticketTrend = response.data.result[0];            
         }
     });
+            
     
+    /*$http.jsonp("http://txhous10pc819.wm.com:1719/RemedyReports/loadOpenEbizTickets?callback=JSON_CALLBACK")
+        .then(function(data) {
+            console.log(JSON.stringify(data));
+    });
+    function JSON_CALLBACK(data) {
+        alert("Callback invoked");
+        var el = document.getElementById('ctl');
+        var scope = angular.element(el).scope();
+        scope.$apply(function() {
+            scope.data = JSON.stringify(data);
+        });
+    }
+*/
+    /*$http({method: 'JSONP', url: 'http://txhous10pc819.wm.com:1719/RemedyReports/loadOpenEbizTickets?callback=JSON_CALLBACK', cache: $templateCache})
+        .then(function(response) {
+        console.log("Response: " + JSON.stringify(response));
+    }, function(response) {
+        console.log("Response: " + response); 
+    });
+
     
+    function JSON_CALLBACK(data) {
+        console.log("Callback");
+    }
     
+    var c = $window.angular.callbacks.counter.toString(36);
+
+    $window['angularcallbacks_' + c] = function (data) {
+        $window.angular.callbacks['_' + c](data);
+        delete $window['angularcallbacks_' + c];
+    };
+    
+    var url = "http://txhous10pc819.wm.com:1719/RemedyReports/loadOpenEbizTickets?alt=json-in-script&callback=JSON_CALLBACK";
+    $http.jsonp(url).success(function(data) {
+        console.log(JSON.stringify(data));
+    }); */
 }]);

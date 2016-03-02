@@ -4,81 +4,41 @@ var config = require('../config.js');
 var logger = require('../utils/loggerUtil.js').logger;
 var Cache = require('../utils/cacheUtil.js');
 
+var ReportProblem = require('../models/reportProblem.js');
+var WMOrder = require('../models/wmOrder.js');
+var SchedulePayments = require('../models/schedulePayments.js');
+var TransNotify = require('../models/transNotifyStats.js');
+var CSErrorCode = require('../models/csErrorCodes.js');
+
 module.exports.reportProblemStats = function(req, res) {
     logger.info("In Report-Problem stats module");
-    oracle.getConnection({
-			user: config.ENV.user,
-			password: config.ENV.password,
-			connectString: config.ENV.connectString
-		}, function(err, connection) {
-			if(err) {
-                logger.error('Error Report-Problem stats module ' + err);
-				console.log("Error: " + err);
-				throw err;
-			} else {
-				connection.execute("select  TO_CHAR(rp.AUDIT_CREATE_DT, 'MM/YYYY') AS MTH, COUNT(*) from REPORT_PROBLEM rp where (RP.REQUEST_TYPE='CONTACTUS' OR RP.REQUEST_TYPE IS NULL) and rp.AUDIT_CREATE_DT BETWEEN to_date('01/01/2015', 'mm/dd/yyyy') AND to_date('12/31/2015', 'mm/dd/yyyy')GROUP BY TO_CHAR(rp.AUDIT_CREATE_DT, 'MM/YYYY')ORDER BY MTH", {}, function(err1, result) {
-					if(err1) {
-                        logger.error("Error in Report-Problem stats module query " + err1);
-						console.log("Error in executing query : " + err1);
-						res.json({status: 500, message: 'Error occured!!'});
-					} else {																			
-						logger.info("Record fetched from DB for Report-Problem stats module");
-                        var resultArray = [];
-                        for(var i=0; i< result.rows.length; i++) {
-                            var resultObj = {};
-                            resultObj.month = result.rows[i][0];
-                            resultObj.count = result.rows[i][1];
-                            resultArray.push(resultObj);                            
-                        }
-                        res.json({status: 200, result: JSON.stringify(resultArray)});
-					}				
-				});
-			}	
-		});
+    ReportProblem.find({}, function(err, result) {
+       if(err)  {
+           logger.error("Error ins fetching data for report problem " + err);
+           res.json({status: 500, success: false, message: "Error in fetching data"});           
+       } else if(!result) {
+           logger.error("No records found for report problem");
+           res.json({status: 404, success: false, message: "No records found"});
+       } else {
+           logger.info("Data for Report Problem fetched successfully");
+           res.json({status: 200, success: true, result: JSON.stringify(result)});
+       }
+    }); 
 }
 
 
 module.exports.wmOrderStats = function(req, res) {    
     logger.info("In WM-Order stats module");
-    Cache.get('wmOrderStats', function(err, value) {
-       if(err) {
-           logger.error("Error in fetching details from cache " + err);
-           res.json({status: 500, message: 'Error'});
-       } else if(!value) {
-           logger.error("No value in cache");
-           oracle.getConnection({
-                user: config.ENV.user,
-                password: config.ENV.password,
-                connectString: config.ENV.connectString
-            }, function(err, connection) {
-                if(err) {
-                    logger.error('Error WM-Order stats module ' + err);
-                    console.log("Error: " + err);
-                    throw err;
-                } else {
-                    connection.execute("select CAT.CATEGORY_GROUP, count(*) from COMMERCE_ADMIN.BLC_ORDER ord join COMMERCE_ADMIN.BLC_ORDER_ITEM oi on OI.ORDER_ID=ORD.ORDER_ID join COMMERCE_ADMIN.WM_CATEGORY cat on CAT.CATEGORY_ID=OI.CATEGORY_ID where trunc(ORD.DATE_CREATED) > sysdate-10 group by CAT.CATEGORY_GROUP", {}, function(err1, result) {
-                        if(err1) {
-                            logger.error("Error in WM-Order stats module query " + err1);
-                            console.log("Error in executing query : " + err1);
-                            res.json({status: 500, message: 'Error occured!!'});
-                        } else {																			
-                            logger.info("Record fetched from DB for WM-Order stats module");
-                            var resultArray = [];
-                            for(var i=0; i< result.rows.length; i++) {
-                                var resultObj = {};
-                                resultObj.category = result.rows[i][0];
-                                resultObj.count = result.rows[i][1];
-                                resultArray.push(resultObj);                            
-                            }
-                            Cache.setCache('wmOrderStats', JSON.stringify(resultArray), logger);
-                            res.json({status: 200, result: JSON.stringify(resultArray)});
-                        }				
-                    });
-                }	
-            });           
+    WMOrder.find({}, function(err, result) {
+        if(err)  {
+           logger.error("Error ins fetching data for WM order " + err);
+           res.json({status: 500, success: false, message: "Error in fetching data"});           
+       } else if(!result) {
+           logger.error("No records found for WM order");
+           res.json({status: 404, success: false, message: "No records found"});
        } else {
-           logger.info("Data retrieved from cache successfully");
-           res.json({status: 200, result: value});
+           logger.info("Data for WM order fetched successfully");
+           res.json({status: 200, success: true, result: JSON.stringify(result)});
        }
     });
 }
@@ -86,68 +46,50 @@ module.exports.wmOrderStats = function(req, res) {
 
 module.exports.scheduledPaymentStats = function(req, res) {
     logger.info("In Scheduled Payment stats module");
-    oracle.getConnection({
-			user: config.ENV.user,
-			password: config.ENV.password,
-			connectString: config.ENV.connectString
-		}, function(err, connection) {
-			if(err) {
-                logger.error('Error Scheduled Payment stats module ' + err);
-				console.log("Error: " + err);
-				throw err;
-			} else {
-				connection.execute("SELECT TRUNC(TO_DATE(PAY_SUBMT_DT)), count(*) FROM PAY_INSTRUCTION WHERE PAY_ST=0 AND AUDIT_CREATE_DT > SYSDATE-20 AND AUDIT_CREATE_DT < sysdate AND PAY_SUBMT_DT < SYSDATE GROUP BY TO_DATE(PAY_SUBMT_DT) ORDER BY TO_DATE(PAY_SUBMT_DT) DESC", {}, function(err1, result) {
-					if(err1) {
-                        logger.error("Error in Scheduled Payment stats module query " + err1);
-						console.log("Error in executing query : " + err1);
-						res.json({status: 500, message: 'Error occured!!'});
-					} else {																			
-						logger.info("Record fetched from DB for Scheduled Payment stats module");
-                        var resultArray = [];
-                        for(var i=0; i< result.rows.length; i++) {
-                            var resultObj = {};
-                            resultObj.day = result.rows[i][0];
-                            resultObj.count = result.rows[i][1];
-                            resultArray.push(resultObj);                            
-                        }
-                        res.json({status: 200, result: JSON.stringify(resultArray)});
-					}				
-				});
-			}	
-		});
+    SchedulePayments.find({}, function(err, result) {
+        if(err)  {
+           logger.error("Error ins fetching data for Scheduled Payments " + err);
+           res.json({status: 500, success: false, message: "Error in fetching data"});           
+       } else if(!result) {
+           logger.error("No records found for Scheduled Payments");
+           res.json({status: 404, success: false, message: "No records found"});
+       } else {
+           logger.info("Data for Scheduled Payments fetched successfully");
+           res.json({status: 200, success: true, result: JSON.stringify(result)});
+       }
+    });
 }
 
 module.exports.transNotifyStats = function(req, res) {
     logger.info("In Trans Notify stats module");
-    oracle.getConnection({
-			user: config.ENV.user,
-			password: config.ENV.password,
-			connectString: config.ENV.connectString
-		}, function(err, connection) {
-			if(err) {
-                logger.error('Error Trans Notify stats module ' + err);
-				console.log("Error: " + err);
-				throw err;
-			} else {
-				connection.execute("select  to_date(PI.PAY_SUBMT_DT),count(*) from PAY_INSTRUCTION pi where PI.PAY_ST=3 and PI.AUDIT_CREATE_DT >  SYSDATE-20 and PI.AUDIT_CREATE_DT < SYSDATE AND PI.PAY_SUBMT_DT < SYSDATE group by to_date(PI.PAY_SUBMT_DT) ORDER BY TO_DATE(PI.PAY_SUBMT_DT) DESC", {}, function(err1, result) {
-					if(err1) {
-                        logger.error("Error in Trans Notify stats module query " + err1);
-						console.log("Error in executing query : " + err1);
-						res.json({status: 500, message: 'Error occured!!'});
-					} else {																			
-						logger.info("Record fetched from DB for Trans Notify stats module");
-                        var resultArray = [];
-                        for(var i=0; i< result.rows.length; i++) {
-                            var resultObj = {};
-                            resultObj.day = result.rows[i][0];
-                            resultObj.count = result.rows[i][1];
-                            resultArray.push(resultObj);                            
-                        }
-                        res.json({status: 200, result: JSON.stringify(resultArray)});
-					}				
-				});
-			}	
-		});
+    TransNotify.find({}, function(err, result) {
+        if(err)  {
+           logger.error("Error ins fetching data for Trans Notify " + err);
+           res.json({status: 500, success: false, message: "Error in fetching data"});           
+       } else if(!result) {
+           logger.error("No records found for Trans Notify");
+           res.json({status: 404, success: false, message: "No records found"});
+       } else {
+           logger.info("Data for Trans Notify fetched successfully");
+           res.json({status: 200, success: true, result: JSON.stringify(result)});
+       }
+    });
+}
+
+module.exports.CSErrorCodes = function(req, res) {
+    logger.info("In Cyber Source Error Codes module");
+    CSErrorCode.find({}, function(err, result) {
+        if(err)  {
+           logger.error("Error ins fetching data for Trans Notify " + err);
+           res.json({status: 500, success: false, message: "Error in fetching data"});           
+       } else if(!result) {
+           logger.error("No records found for Trans Notify");
+           res.json({status: 404, success: false, message: "No records found"});
+       } else {
+           logger.info("Data for Trans Notify fetched successfully");
+           res.json({status: 200, success: true, result: JSON.stringify(result)});
+       }
+    });
 }
 
 module.exports.ivrFileWithoutFileStatusStats = function(req, res) {

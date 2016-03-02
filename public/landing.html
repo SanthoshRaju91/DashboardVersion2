@@ -25,8 +25,8 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a data-toggle = "modal" data-target = "#themeModal" style = "cursor: pointer">Themes</a></li>
-                    <li><a ui-sref="landing.teamMember">Team Members</a></li>
+                    <li><a data-toggle = "modal" data-target = "#themeModal" style = "cursor: pointer" class = "hvr-underline-from-center">Themes</a></li>
+                    <li><a ui-sref="landing.teamMember" class = "hvr-underline-from-center">Team Members</a></li>
                     <li><a href="" class = "btn btn-default btn-logout" style = "color: black !important;" ng-click ="logOut()">Logout</a></li>
                 </ul>                            
             </div>
@@ -34,16 +34,7 @@
     </nav>
     <div id="wrapper">
         <div id="sidebar-wrapper" ng-style = "theme">
-            <div class="profile-container">
-                <div class="thumbnail thumbnail-custom" ng-style = "theme" style="border-color: {{selectedBorder}}">
-                    <img src="images/icon-user.png" width="100px" height="100px" class = "img-circle">
-                    <div class="caption">
-                        <h3>Santhosh Raju</h3>
-                        <a ui-sref="landing.profile" class="btn btn-default btn-sm text-center" style="margin-left: 40px;">View Profile</a>
-                    </div>
-                </div>
-            </div>
-            <ul class="sidebar-nav">
+            <ul class="sidebar-nav" id ="sidebar">
                 <li >
                     <a ui-sref="landing.dashboard"><span class = "ion-ios-pulse icon"></span> Dashboard</a>
                 </li>                
@@ -71,3 +62,13 @@
         </div> 
     </div>                
 </div>
+
+
+<script>
+    
+    $('#sidebar li:first-child a').addClass('active');
+    $('#sidebar a').click(function() {
+        $('#sidebar a').removeClass('active');
+        $(this).addClass('active');
+    });
+</script>

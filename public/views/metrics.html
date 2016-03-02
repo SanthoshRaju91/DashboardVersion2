@@ -44,5 +44,28 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h5 class="text-center">Cyber Source ERror code - stats</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Response Message</th>
+                                <th>Merchant ID</th>
+                                <th>Source</th>
+                                <th>Count</th>
+                            </tr>
+                            <tr ng-repeat = "code in errorCodes">
+                                <td>{{code.responseMessage}}</td>
+                                <td>{{code.merchantID}}</td>
+                                <td>{{code.source}}</td>
+                                <td>{{code.count}}</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
     </section>        
 </div>

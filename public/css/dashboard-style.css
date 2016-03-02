@@ -5,7 +5,8 @@ html {
 body {
   overflow: auto;
   height: 100%;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    color: black !important;
 }
 
 .modal-open {
@@ -26,7 +27,7 @@ body {
 .navbar-brand {
     text-transform: uppercase;
     font-size: 25px;
-    color: #fff;
+    color: black;
 }
 .navbar-brand span {
     margin-right: 5px;
@@ -39,14 +40,17 @@ body {
 }
 
 .navbar-inverse {
-    margin-bottom: 0px;
-    background: #2b597b;
-    border-color: #2b597b;    
+    margin-bottom: 0px;/*
+    background: #3FC380;
+    border-color: #3FC380;   */ 
+    background-image: linear-gradient(rgba(72, 72, 72, 0.9), rgba(72, 72, 72, 0.9)),  url(../images/background.jpg);
+    background-position: left;
+    background-size: cover;
 }
 
 
-.navbar-inverse .navbar-brand,.navbar-inverse .navbar-nav>li>a{color:#F2F1EF}
-.navbar-inverse .badge {background:#ccc; border-color: #2b597b;border:1px solid;font-size: :11px}
+.navbar-inverse .navbar-brand,.navbar-inverse .navbar-nav>li>a{color:black; font-weight: 500; letter-spacing: 1px;}
+.navbar-inverse .badge {background:#ccc; border-color: #3FC380;border:1px solid;font-size: :11px}
 
 .main-container {
     margin-top: 65px;
@@ -100,7 +104,9 @@ body {
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #2b597b ;
+    background-image: linear-gradient(rgba(72, 72, 72, 0.9), rgba(136, 136, 136, 0.60)),  url(../images/background.jpg);
+    background-position: center;
+    background-size: contain;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -126,7 +132,7 @@ body {
 
 .sidebar-nav {
     position: absolute;
-    top: 18em;
+    top: 2em;
     width: 250px;
     margin: 0;
     padding: 0;
@@ -142,12 +148,20 @@ body {
     display: block;
     text-decoration: none;
     color: #fff;
+    font-size: 16px;
+    font-weight: 500; letter-spacing: 1px;
 }
 
+.sidebar-nav li a.active,
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: #fff;
     background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a.active {
+    background: rgba(255,255,255,0.5);
+    border-left: 2px solid #D91E18; 
 }
 
 .sidebar-nav li a:active,
@@ -542,14 +556,19 @@ div#arrowred {
     }
     
     .login-container {
-        background-image: linear-gradient(rgba(2, 2, 2, 0.7), rgba(2, 2, 2, 0.7)), url(../images/background.jpg);
+        background-image: linear-gradient(rgba(185, 181, 181, 0.7), rgba(2, 2, 2, 0.7)), url(../images/background.jpg);
         background-position: center;
         background-size: cover;
         height: 100vh;
     }
     
     .login-panel {
-        margin-top: 150px;
+        margin-top: 50px;
         padding: 20px;
-        background-image: linear-gradient(rgba(144, 143, 143, 0.63), rgba(144, 143, 143, 0.63));
+        
+    }
+    
+    .panel-body span img {
+        margin-left: 160px;
+        margin-bottom: 20px;
     }

@@ -25,7 +25,7 @@ module.exports = function(io) {
     router.get('/getTasks', taskController.getTasks);
     router.get('/getTask/:id', taskController.getTask);
     router.put('/updateTaskStatus/:id', taskController.updateTaskStatus);
-    router.delete('/deleteTask/:id', taskController.deleteTask);
+    router.delete('/deleteTask/:id', taskController.deleteTask);        
     
     router.post('/addMember', teamController.addMember);
     router.get('/getTeamMembers', teamController.getTeamMembers);
@@ -47,6 +47,7 @@ module.exports = function(io) {
     router.get('/transNotifyStats', metricsController.transNotifyStats);
     router.get('/ivrFileWithoutFileStatusStats', metricsController.ivrFileWithoutFileStatusStats);
     router.get('/ivrFileWithoutFileNameStats', metricsController.ivrFileWithoutFileNameStats);
+    router.get('/CSErrorCodes', metricsController.CSErrorCodes);
     
     router.post('/sendRequest', mailController.sendRequest);
         

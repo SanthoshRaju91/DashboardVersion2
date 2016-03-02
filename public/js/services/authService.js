@@ -32,7 +32,7 @@ app.service('AuthService', ['$window', function($window) {
     return user;
 }]);
 
-app.service('AuthInterceptor', ['AuthService', function(AuthService) {
+app.service('AuthInterceptor', ['AuthService', '$location', function(AuthService, $location) {
     
     var interceptorFactory = {};
     
@@ -44,5 +44,13 @@ app.service('AuthInterceptor', ['AuthService', function(AuthService) {
         return config;
     }
     
+    interceptorFactory.responseError = function(response) {
+      /*  console.log("Auth response  " + response.status);*/
+        if(response.status == 401) {
+            console.log("Token expired ");
+            AuthService.logOut();
+            $location.path('/login');
+        }
+    }
     return interceptorFactory;
 }]);
